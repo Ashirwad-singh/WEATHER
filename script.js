@@ -47,7 +47,7 @@ conditionElem.innerText = condition;
 }
 
 async function fetchWeather(location){
-    const url=`http://api.weatherapi.com/v1/current.json?key=d46b8bec072e4aebbfb111002241912&q=${location}&aqi=no`
+    const url=`https://api.weatherapi.com/v1/current.json?key=d46b8bec072e4aebbfb111002241912&q=${location}&aqi=no`
     const response=await fetch(url);
     if(response.status==400){
         alert("location is invalid");
