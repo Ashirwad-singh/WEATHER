@@ -47,14 +47,19 @@ conditionElem.innerText = condition;
 }
 
 async function fetchWeather(location){
-    const url=`https://api.weatherapi.com/v1/current.json?key=d46b8bec072e4aebbfb111002241912&q=${location}&aqi=no`
-    const response=await fetch(url);
-    if(response.status==400){
-        alert("location is invalid");
+    const url = `https://api.weatherapi.com/v1/current.json?key=d46b8bec072e4aebbfb111002241912&q=${location}&aqi=no`;
+    try {
+        const response = await fetch(url);
+        if (response.status === 400) {
+            alert("Location is invalid");
+            return null;
+        } else if (response.status === 200) {
+            const json = await response.json();
+            return json;
+        }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Could not fetch weather data. Check internet or API key.");
         return null;
-    }
-    else if(response.status==200){
-        const json=await response.json();
-        return json;
     }
 }
